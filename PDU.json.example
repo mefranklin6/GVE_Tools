@@ -1,0 +1,17 @@
+[
+    {
+        "RoomName": "Science Lab",
+        "RoomId": 277,
+        "PDU_IP": "192.168.1.2"
+    },
+    {
+        "RoomName": "Board Room",
+        "RoomId": 169,
+        "PDU_IP": "192.168.1.3"
+    },
+    {
+        "RoomName": "Huddle Room, 1st floor",
+        "RoomId": 186,
+        "PDU_IP": "192.168.100.28"
+    }
+]

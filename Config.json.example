@@ -1,0 +1,19 @@
+{
+    "Username": "myuser",
+    "GVE_URL": "https://gve.example.com",
+    "Device_Types": [
+        "Video_Projector",
+        "Switcher",
+        "Scaler",
+        "Matrix_Switcher"
+    ],
+    "Auto_Reboot": true,
+    "Ignore_Outlets": [
+        "1",
+        "8"
+    ],
+    "Ignore_Rooms": [
+        "Known Issue Room 12",
+        "UnidirectionalRoom 101"
+    ]
+}
