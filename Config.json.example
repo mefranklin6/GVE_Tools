@@ -7,7 +7,6 @@
         "Scaler",
         "Matrix_Switcher"
     ],
-    "Auto_Reboot": true,
     "Ignore_Outlets": [
         "1",
         "8"
