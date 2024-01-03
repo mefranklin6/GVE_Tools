@@ -185,7 +185,7 @@ def main() -> None:
                         pdu_controller.main(str(pdu_ip), str(room_name), pdu_password)
                 except Exception as e:
                     print(
-                        f"{room_name} : Error sending reboot command to {pdu_ip_list} : {e}"
+                        f"{room_name} : Error sending reboot command to {pdu_ip} : {e}"
                     )
                     continue
 
