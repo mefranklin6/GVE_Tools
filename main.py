@@ -61,7 +61,6 @@ class GVE:
         return data
 
 
-
 def load_json(file_path: str) -> dict:
     """Loads a json file from disk"""
     try:
@@ -86,7 +85,25 @@ def validate_device_types(devices_df: pd.DataFrame) -> None:
             exit(1)
 
 
+def get_user_reboot_preference() -> str:
+    user_input = input("Auto Power Toggle? (Y/N): ")
+    if user_input.upper() not in ["Y", "N"]:
+        print("Invalid input.  Please enter Y or N.")
+        get_user_reboot_preference()
+    return user_input
+
+
 def main() -> None:
+    user_auto_power_preference = get_user_reboot_preference()
+    user_auto_power_preference = user_auto_power_preference.upper()
+
+    try:
+        pdu_data = load_json("PDU.json")
+    except FileNotFoundError as e:
+        print("Cannot find PDU.json")
+        print("Auto reboot functionality will not be available")
+        user_auto_power_preference = "N"
+
     gve_connection = GVE()
 
     # Load root data from GVE into flattened dataframes
@@ -130,16 +147,14 @@ def main() -> None:
         {"DeviceType": lambda x: ", ".join(x), "RoomId": "first"}
     )
 
-    if not config["Auto_Reboot"]:
+    if user_auto_power_preference == "N":
         print(offline_report_df)
 
     else:
         # IP address of devices connected to processors are not provided by GVE,
         # so we have to load an outside data source to get them.
-        pdu_data = load_json("PDU.json")
         pdu_df = pd.DataFrame(pdu_data)
         pdu_password = getpass("Enter PDU Password: ")
-
 
         # Add the PDU data into a merged dataframe
         offline_report_with_pdu_df = pd.merge(
@@ -150,21 +165,28 @@ def main() -> None:
         )
 
         print(offline_report_with_pdu_df)
+        with open("offline_report.csv", "w") as csv_file:
+            offline_report_with_pdu_df.to_csv(csv_file, index=False)
 
         # Iterate over the dataframe and send reboot commands to switched PDU's
         for _, row in offline_report_with_pdu_df.iterrows():
             room_name = row["RoomName"]
-            pdu_ip = row["PDU_IP"]
-            if pd.isna(pdu_ip):
+            pdu_ip_list = row["PDU_IP"]
+
+            # Rooms without PDU's are NaN and skipped
+            if not isinstance(pdu_ip_list, list):
                 continue
+
             else:  # room has PDU(s)
                 print("---------------------------------------------------")
-                print(f"{room_name} : Found PDU(s) at {pdu_ip}")
+                print(f"{room_name} : Found PDU(s) at {pdu_ip_list}")
                 try:
-                    for ip in pdu_ip:
-                        pdu_controller.main(str(ip), str(room_name), pdu_password)
+                    for pdu_ip in pdu_ip_list:
+                        pdu_controller.main(str(pdu_ip), str(room_name), pdu_password)
                 except Exception as e:
-                    print(f"{room_name} : Error sending reboot command to {pdu_ip} : {e}")
+                    print(
+                        f"{room_name} : Error sending reboot command to {pdu_ip_list} : {e}"
+                    )
                     continue
 
 
