@@ -1,0 +1,30 @@
+RoomName,DeviceType,RoomId,PDU_IP
+FAMC 007,Controller at 10.248.129.0,69,
+Holt 155,Scaler,89,
+MLIB 336,Controller at 10.248.128.80,121,
+PLMS 201,Controller at 10.248.131.47,160,
+Park119,Scaler,157,
+SCI - 361,"Scaler, Video_Projector",200,['10.248.130.200']
+SCI - 416,Scaler,203,['10.248.131.189']
+SCI 241,"Scaler, Video_Projector",179,
+SCI 360,"Scaler, Video_Projector",199,
+SCI-125,"Matrix_Switcher, Video_Projector, Video_Projector",167,['10.248.130.180']
+SCI-130,"Matrix_Switcher, Video_Projector, Video_Projector",169,['10.248.130.254']
+SCI-216,Scaler,315,['10.248.131.165']
+SCI-242,"Matrix_Switcher, Video_Projector, Video_Projector",180,['10.248.129.243']
+SCI-247,"Matrix_Switcher, Video_Projector, Video_Projector",184,['10.248.130.21']
+SCI-250,"Matrix_Switcher, Video_Projector, Video_Projector",186,['10.248.130.88']
+SCI-260,Video_Projector,187,
+SCI-312,"Matrix_Switcher, Video_Projector, Video_Projector",190,['10.248.130.32']
+SCI-314,"Matrix_Switcher, Video_Projector, Video_Projector",191,['10.248.130.97']
+SCI-316,Scaler,316,['10.248.129.164']
+SCI-342,Scaler,194,
+SCI-349,"Matrix_Switcher, Video_Projector, Video_Projector",196,['10.248.130.119']
+SCI-425,Scaler,317,['10.248.131.160']
+SCI-426,Video_Projector,206,
+SCI-451,"Matrix_Switcher, Video_Projector, Video_Projector",207,['10.248.130.140']
+SCI-457,Scaler,288,
+SCI-458_460,"Matrix_Switcher, Controller at 10.248.130.157, Controller at 10.248.130.168",322,"['10.248.130.156', '10.248.130.167']"
+SSC 390,Video_Projector,220,
+Tehama 230,Matrix_Switcher,238,
+Tehama226 TLP,"Scaler, Matrix_Switcher",237,

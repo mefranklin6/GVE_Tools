@@ -17,8 +17,6 @@ Not affiliated with the Extron corporation.
 
 - `GVE_URL`: (string) The DNS of your Global Viewer Enterprise Server. For example, "https://gve.example.com".
 
-- `Auto_Reboot`: (bool) If the tool finds a switched outlet PDU in a room with offline devices, it can reboot outlets for you. Set this to false if you don't have switched PDUs.
-
 - `Ignore_Outlets`: (List of strings) These outlets on switched PDUs won't be touched. For example, if your PC is always on outlet 1, add `"1"` to the list.
 
 - `Ignore_Rooms`: (List of strings) Any room in this list *matched by name* will be ignored entirely. This is useful for rooms that you know are offline, or that have unidirectional devices in them.
@@ -63,3 +61,4 @@ This tool also assumes all of your PDU's have the same password (they shouldn't)
 Please use your own secure method of retriving passwords.
 
 ### Run main.py
+You will be promted for GVE password, PDU password and if you would like to auto-reboot PDU outlets
