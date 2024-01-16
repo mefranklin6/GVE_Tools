@@ -101,6 +101,7 @@ def evaluate_outlet_states(outlet_states, room_name) -> list:
 
 def main(pdu_ip, room_name, pdu_password):
     pdu_controller = None
+    exit_code = 1
     try:
         pdu_controller = PDUController(pdu_ip, room_name, pdu_password)
         outlet_states = pdu_controller.get_outlet_state()
@@ -109,8 +110,7 @@ def main(pdu_ip, room_name, pdu_password):
             pdu_controller.reboot_outlets(outlets_to_reboot)
         exit_code = 0
     except Exception as e:
-        print(e)
-        exit_code = 1
+        print(f"{room_name} - {e}")
     finally:
         if pdu_controller is not None:
             pdu_controller.close()
