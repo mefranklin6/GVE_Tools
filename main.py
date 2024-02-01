@@ -149,6 +149,8 @@ def main() -> None:
 
     if user_auto_power_preference == "N":
         print(offline_report_df)
+        # optional: prints just the room names for copy/paste into a ticket
+        print(offline_report_df["RoomName"].values)
 
     else:
         # IP address of devices connected to processors are not provided by GVE,
@@ -165,6 +167,7 @@ def main() -> None:
         )
 
         print(offline_report_with_pdu_df)
+        print(offline_report_df["RoomName"].values)
         with open("offline_report.csv", "w") as csv_file:
             offline_report_with_pdu_df.to_csv(csv_file, index=False)
 
